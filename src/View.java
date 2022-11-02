@@ -52,16 +52,18 @@ class View extends JPanel {
 		g.drawImage(background2, 0, 0, 960,816, null);
 		g.drawImage(background3, 0, 0, 960,816, null);
 		g.drawImage(background4, 0, 0, 960,816, null);
-		g.drawImage(textBox1, 0, 0, 250,100, null);
-		g.drawImage(textBox2, 250, 0, 250,100, null);
+		
 
 		for(int i = 0; i < 100; i++){
 			//draws ground that won't move with view
 			g.drawImage(groundImage, 300*i - scrollPos, 300, 300, 345, null);
 		}
-
+		//draw all sprite objects
 		for (Sprite sprite : model.sprites) {
 			sprite.draw(g, scrollPos);
 		}
+		//draw text help boxes on top of other images 
+		g.drawImage(textBox1, 0, 0, 250,100, null);
+		g.drawImage(textBox2, 250, 0, 250,100, null);
 	}
 }
