@@ -3,6 +3,8 @@
     11/1/22
     Side Scroller
  */
+package main;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -26,9 +28,9 @@ public class Wizard extends Sprite{
             imageCollectionForward = new BufferedImage[8];
             imageCollectionBackward = new BufferedImage[16];
             imageCollectionJump = new BufferedImage[17];
-            fileLoad(imageCollectionForward, "wizard/wizard");
-            fileLoad(imageCollectionBackward, "wizard/backward");
-            fileLoad(imageCollectionJump, "wizard/jump");
+            fileLoad(imageCollectionForward, "resources/wizard/wizard");
+            fileLoad(imageCollectionBackward, "resources/wizard/backward");
+            fileLoad(imageCollectionJump, "resources/wizard/jump");
             image = imageCollectionForward[0]; //image will start with default moving forward image
         }
     }

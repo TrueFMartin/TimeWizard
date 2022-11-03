@@ -1,3 +1,4 @@
+package main;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -18,8 +19,8 @@ public class Skeleton extends Sprite {
         if (imageCollectionMove == null) {
             imageCollectionMove = new BufferedImage[12];
             imageCollectionDead = new BufferedImage[13];
-            fileLoad(imageCollectionMove, "skeleton/skeleton alive");
-            fileLoad(imageCollectionDead, "skeleton/skeleton dead");
+            fileLoad(imageCollectionMove, "resources/skeleton/skeleton alive");
+            fileLoad(imageCollectionDead, "resources/skeleton/skeleton dead");
             image = imageCollectionMove[0];
         }
     }

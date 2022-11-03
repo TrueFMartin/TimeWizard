@@ -4,6 +4,7 @@
     Side Scroller
  */
 
+package main;
 
 import java.util.ArrayList;
 public class Model {
@@ -38,12 +39,12 @@ public class Model {
         ob.add("Pipes", pipeList);
         ob.add("Skeletons", SkeletonList);
 
-        ob.save("map\\map.json"); //file name
+        ob.save("resources\\map\\map.json"); //file name
     }
 
     public void unmarshal(){// load model from Json file
         sprites = new ArrayList<>(); //allocates 'pipes' to new memory
-        Json ob = Json.load("map\\map.json"); //J object will be node from file
+        Json ob = Json.load("bin\\resources\\map\\map.json"); //J object will be node from file
         Json pipeList = ob.get("Pipes"); //create list from Map in json
         Json skeletonList = ob.get("Skeletons");
         Json wizardLocation = ob.get("Wizard");

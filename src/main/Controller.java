@@ -3,7 +3,7 @@
     11/1/22
     Side Scroller
  */
-
+package main;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-class Controller implements ActionListener, MouseListener, KeyListener
+public class Controller implements ActionListener, MouseListener, KeyListener
 {
 	View view;
 	Model model;

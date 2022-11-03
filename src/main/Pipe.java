@@ -3,6 +3,7 @@
     11/1/22
     Side Scroller
  */
+package main;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class Pipe extends Sprite{
          super(x, y, 60, 300);
          if(image == null){
              try {
-                 image = ImageIO.read(returnImage("background/deadpipe.png"));
+                 image = ImageIO.read(returnImage("resources/background/deadpipe.png"));
              } catch (IOException e) {
                  throw new RuntimeException(e);
              }

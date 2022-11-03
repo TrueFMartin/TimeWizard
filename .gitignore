@@ -3,6 +3,8 @@
 /workspace.xml
 /out
 *.class
+/.idea
+TimeWizard.iml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files

@@ -3,6 +3,7 @@
     11/1/22
     Side Scroller
  */
+package main;
 import javax.imageio.ImageIO;
 import java.awt.Rectangle;
 import java.awt.Graphics;

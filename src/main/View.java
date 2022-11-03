@@ -3,6 +3,7 @@
     11/1/22
     Side Scroller
  */
+package main;
 
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
@@ -22,6 +23,7 @@ class View extends JPanel {
 
 
 	public InputStream returnImage(String imageLocation){
+		System.out.println(View.class.getClassLoader());
 		return View.class.getClassLoader().getResourceAsStream(imageLocation);
 	}
 	View(Controller c, Model m) {
@@ -30,15 +32,15 @@ class View extends JPanel {
 		c.setView(this);
 		try {	//Loads ground and all background images
 
-			this.background1 = ImageIO.read(returnImage("background/background1.png"));
-			this.background2 = ImageIO.read(returnImage("background/background2.png"));
-			this.background3 = ImageIO.read(returnImage("background/background3.png"));
-			this.background4 = ImageIO.read(returnImage("background/background4.png"));
-			this.groundImage = ImageIO.read(returnImage("background/ground.png"));
-			this.textBox1 = ImageIO.read(returnImage("background/controlText1.png"));
-			this.textBox2 = ImageIO.read(returnImage("background/controlText2.png"));
-			this.wizardFrame = ImageIO.read(returnImage("frame/WizardFace.png"));
-			healthBars = ImageIO.read(returnImage("frame/HealthFrame.png"));
+			this.background1 = ImageIO.read(returnImage("resources/background/background1.png"));
+			this.background2 = ImageIO.read(returnImage("resources/background/background2.png"));
+			this.background3 = ImageIO.read(returnImage("resources/background/background3.png"));
+			this.background4 = ImageIO.read(returnImage("resources/background/background4.png"));
+			this.groundImage = ImageIO.read(returnImage("resources/background/ground.png"));
+			this.textBox1 = ImageIO.read(returnImage("resources/background/controlText1.png"));
+			this.textBox2 = ImageIO.read(returnImage("resources/background/controlText2.png"));
+			this.wizardFrame = ImageIO.read(returnImage("resources/frame/WizardFramed.png"));
+			healthBars = ImageIO.read(returnImage("resources/frame/HealthFrame.png"));
 		} catch(Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
@@ -66,6 +68,7 @@ class View extends JPanel {
 		//draw text help boxes on top of other images 
 		g.drawImage(textBox1, 0, 0, 250,100, null);
 		g.drawImage(textBox2, 250, 0, 250,100, null);
-		g.drawImage(wizardFrame, 0, 120, null);
+		g.drawImage(wizardFrame, 0, 120, 83,80,null);
+		g.drawImage(healthBars,80,140, 150, 40, null);
 	}
 }

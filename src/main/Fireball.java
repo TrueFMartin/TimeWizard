@@ -3,6 +3,8 @@
     11/1/22
     Side Scroller
  */
+package main;
+
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 
@@ -18,7 +20,7 @@ public class Fireball extends Sprite{
         this.direction = direction;
         if (imageCollection == null) {
             imageCollection = new BufferedImage[60];
-            fileLoad(imageCollection, "fireball/fireball");
+            fileLoad(imageCollection, "resources/fireball/fireball");
             image = imageCollection[0];
 
         }

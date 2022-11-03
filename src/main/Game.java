@@ -4,10 +4,10 @@
     Side Scroller
  */
 
+package main;
 
 import javax.swing.*;
 import java.awt.Toolkit;
-
 
 public class Game extends JFrame
 {
