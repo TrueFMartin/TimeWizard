@@ -14,6 +14,7 @@ class View extends JPanel {
 	BufferedImage groundImage;
 	BufferedImage background1, background2, background3, background4; //background is 4 layered images,
 	BufferedImage textBox1, textBox2;
+	BufferedImage wizardFrame, healthBars;
 
 	Model model;
 
@@ -36,9 +37,9 @@ class View extends JPanel {
 			this.groundImage = ImageIO.read(returnImage("background/ground.png"));
 			this.textBox1 = ImageIO.read(returnImage("background/controlText1.png"));
 			this.textBox2 = ImageIO.read(returnImage("background/controlText2.png"));
-
-		}
-		catch(Exception e) {
+			this.wizardFrame = ImageIO.read(returnImage("frame/WizardFace.png"));
+			healthBars = ImageIO.read(returnImage("frame/HealthFrame.png"));
+		} catch(Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
 		}
@@ -65,5 +66,6 @@ class View extends JPanel {
 		//draw text help boxes on top of other images 
 		g.drawImage(textBox1, 0, 0, 250,100, null);
 		g.drawImage(textBox2, 250, 0, 250,100, null);
+		g.drawImage(wizardFrame, 0, 120, null);
 	}
 }
