@@ -12,17 +12,24 @@ public class Wizard extends Sprite{
     static BufferedImage[] imageCollectionForward; //array of images for wizard moving towards right
     static BufferedImage[] imageCollectionBackward;// array of images for wizard moving towards left
     static BufferedImage[] imageCollectionJump;// array of images for wizard jumping
-
+    int health, mana;
+    public final static int MANA_MAX = 200;
+    public final static int HEALTH_MAX = 5;
+    public final static int SPELL_COST = 60;
     //int x,y,w,h; //position and dimensions of wizard
     double vertVelocity; //amount of pull against gravity
 
-    int imageNumberForward, imageNumberBackward, imageNumberJump; //keeps track of which image is in use in forward/backward/jump array
+    int imageNumberForward, imageNumberBackward, imageNumberJump, imageNumberInvincible; //keeps track of which image is in use in forward/backward/jump array
 
     int prevX, prevY; //wizard's previous position, used in determine collision direction
-    int airTimeFrames;//how long wizard has been off of ground
+    int airTimeFrames, invincibilityFrames;//frame counters for stats
+
+    boolean isInvincible;
 
     Wizard(int x, int y){
         super(x, y, 60, 95);
+        health = 5;
+        mana = 5;
         if(imageCollectionBackward == null){
 
             imageCollectionForward = new BufferedImage[8];
@@ -44,26 +51,55 @@ public class Wizard extends Sprite{
 
     @Override
     public boolean update() {
+        updateInvincabilty();
+        updateGravity();
+        updateMana();
+
+        return (health > 0);
+    }
+    void updateInvincabilty(){
+        if(isInvincible){
+            invincibilityFrames++;
+            if(++imageNumberInvincible % 4 == 0)
+                image = imageCollectionJump[11];
+            else
+                image = imageCollectionJump[10];
+        }
+        if(invincibilityFrames > 35) {
+            isInvincible = false;
+            invincibilityFrames = 0;
+        }
+    }
+    void updateGravity() {
         prevY = y;
         vertVelocity += 1.2;//Gravity always pulls down at 1.2 per tick
         y += vertVelocity;
 
-        if(y >= 495){//while wizard is on ground
+        if (y >= 495) {//while wizard is on ground
             imageNumberJump = 0;
             vertVelocity = 0.0;
             y = 495; //snap back to ground
             airTimeFrames = 0;
-
-        }
-        else{//since not on ground, increase counter of air time
+        } else {//since not on ground, increase counter of air time
             airTimeFrames++;
         }
-        return true;
     }
+    void updateMana(){
+        if(mana < MANA_MAX)
+            mana++;
+    }
+
     @Override
     public void isCollision(Sprite sprite){//returns true if wizard intersects with a pipe
         if(sprite instanceof Pipe && sprite.getBounds().intersects(getBounds()))  //creates a rectangle at pipe and wizard location, if there is an intersection return true
             collisionHandler(sprite);
+        if(sprite instanceof Skeleton && sprite.getBounds().intersects(getBounds())) {
+            if (!isInvincible){ //reduce health if contact is made and not invincible
+                isInvincible = true;
+                health--;
+            }
+        }
+
     }
     @Override
     public void collisionHandler(Sprite sprite) {
@@ -85,8 +121,6 @@ public class Wizard extends Sprite{
             x = sprite.x + sprite.w;
         }
     }
-
-
 
     void imageStateForward(){ //User is pressing right arrow,
         BASE_SPEED = FOWARD_SPEED;
@@ -121,7 +155,15 @@ public class Wizard extends Sprite{
             y += vertVelocity;
         }
     }
-
+//-------------Compares spell cost/remaining mana-------------
+// ------------If castable, reduce mana, return true----------
+    boolean canCastSpell(){
+        if(mana > SPELL_COST) {
+            mana -= SPELL_COST;
+            return true;
+        }
+        return false;
+    }
     @Override
     public String toString()
     {

@@ -5,11 +5,11 @@
  */
 package main;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.InputStream;
-import java.awt.Graphics;
 
 class View extends JPanel {
 	BufferedImage groundImage;
@@ -20,16 +20,17 @@ class View extends JPanel {
 	Model model;
 
 	int scrollPos; //left/right position scrolled by user
-
+	JInternalFrame frame;
 
 	public InputStream returnImage(String imageLocation){
-		System.out.println(View.class.getClassLoader());
+		//System.out.println(View.class.getClassLoader());
 		return View.class.getClassLoader().getResourceAsStream(imageLocation);
 	}
 	View(Controller c, Model m) {
 
 		model = m;
 		c.setView(this);
+
 		try {	//Loads ground and all background images
 
 			this.background1 = ImageIO.read(returnImage("resources/background/background1.png"));
@@ -45,6 +46,9 @@ class View extends JPanel {
 			e.printStackTrace(System.err);
 			System.exit(1);
 		}
+//		frame = new JInternalFrame("test");
+//
+//		this.add(frame);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -70,5 +74,9 @@ class View extends JPanel {
 		g.drawImage(textBox2, 250, 0, 250,100, null);
 		g.drawImage(wizardFrame, 0, 120, 83,80,null);
 		g.drawImage(healthBars,80,140, 150, 40, null);
+		g.setColor(new Color(255, 0, 60));
+		g.fillRect(82,146,145 * model.wizard.health / Wizard.HEALTH_MAX, 7);
+		g.setColor(new Color(50, 20, 255));
+		g.fillRect(82, 167, 145 * model.wizard.mana / Wizard.MANA_MAX, 7);
 	}
 }

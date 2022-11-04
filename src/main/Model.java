@@ -110,10 +110,8 @@ public class Model {
     }
 
     public void shootFireball() {
-        if(wizard.prevX <= wizard.x)
-            sprites.add(new Fireball(wizard.x + wizard.w, wizard.y + wizard.h/2, 1));
-        else
-            sprites.add(new Fireball(wizard.x - 50, wizard.y + wizard.h/2, -1));
+        if(wizard.canCastSpell())
+            sprites.add(new Fireball(wizard.x + wizard.w, wizard.y + wizard.h/2));
     }
 
     public void addSkeleton() {
@@ -121,6 +119,7 @@ public class Model {
     }
 
     public void restartWizard() {
-        wizard.x = 200;
+        wizard = new Wizard(200, 495);
+        sprites.set(0, wizard);
     }
 }

@@ -12,12 +12,11 @@ public class Fireball extends Sprite{
     static BufferedImage[] imageCollection;
     int imageNumber;
     double vertVelocity;
-    int direction, airTimeFrames;
+    int airTimeFrames;
     boolean alive;
-    Fireball(int x, int y, int direction) {
+    Fireball(int x, int y) {
         super(x, y, 50 , 50);
         alive = true;
-        this.direction = direction;
         if (imageCollection == null) {
             imageCollection = new BufferedImage[60];
             fileLoad(imageCollection, "resources/fireball/fireball");
@@ -44,7 +43,7 @@ public class Fireball extends Sprite{
             w += 2;
             h += 2;
         }
-        x+= direction*10;
+        x+= 10;
         vertVelocity += 1.2;//Gravity always pulls down at 1.2 per tick
         y += vertVelocity;
         image = imageCollection[imageNumber++ % 60];
