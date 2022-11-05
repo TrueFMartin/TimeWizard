@@ -4,12 +4,14 @@
 ::Game.java View.java Controller.java Model.java Pipe.java Json.java Wizard.java Skeleton.java Fireball.java Sprite.java
 ::@echo off
 cd src
-javac main/*.java -d ./bin
+javac main/*.java -d ./bin -Xlint:unchecked
+cd bin
+jar cfm0 TimeWizard.jar Manifest.txt main/*.class resources
 if %errorlevel% neq 0 (
 	echo There was an error; exiting now.	
 ) else (
 	echo Compiled correctly!  Running Game...
-	java -cp ./bin main.Game
+	java -jar TimeWizard.jar
 )
 
 

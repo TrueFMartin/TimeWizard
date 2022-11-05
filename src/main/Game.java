@@ -37,7 +37,7 @@ public class Game extends JFrame
 
 
 	public void run() {
-		model.unmarshal();
+		model.loadSerial();
 		while(true) {
 			controller.update();//game updates when keys pressed
 			view.repaint(); //indirectly calls view.paintComponent

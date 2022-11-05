@@ -38,11 +38,11 @@ public class Controller implements ActionListener, MouseListener, KeyListener
 			System.exit(1);
 		}
 		if(keySave) { //user releases 's' key
-			model.marshal(); //marshals model to json
+			model.saveSerial(); //marshals model to json
 			keySave = false; //'s' key is no longer considered pressed/released
 		}
 		if(keyLoad){ //user releases 'l' key
-			model.unmarshal(); //unmarshals json file to model
+			model.loadSerial(); //unmarshals json file to model
 			keyLoad = false; //consider 'l' key released
 		}
 		if(keyJump){ //space bar pressed, jump

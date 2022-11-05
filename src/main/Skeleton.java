@@ -99,6 +99,17 @@ public class Skeleton extends Sprite {
     }
 
     @Override
+    protected void preLoadStaticImages() {
+        if (imageCollectionMove == null) {
+            imageCollectionMove = new BufferedImage[12];
+            imageCollectionDead = new BufferedImage[13];
+            fileLoad(imageCollectionMove, "resources/skeleton/skeleton alive");
+            fileLoad(imageCollectionDead, "resources/skeleton/skeleton dead");
+            image = imageCollectionMove[0];
+        }
+    }
+
+    @Override
     public String toString() {
         return "Goomba (x,y) = (" + x + ", " + y + "), width = " + w + ", height = " + h;
     }

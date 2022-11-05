@@ -10,13 +10,17 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serial;
+import java.io.Serializable;
 
-public abstract class Sprite {
+public abstract class Sprite implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1234567L;
     int x,y,w,h;
     static int BASE_SPEED = 5;
     final static int FOWARD_SPEED = 5;
     final static int REVERSE_SPEED = -3;
-    BufferedImage image;
+    transient BufferedImage image;
     Sprite(int x, int y, int w, int h){
         this.x = x;
         this.y = y;
@@ -63,6 +67,8 @@ public abstract class Sprite {
     protected abstract void draw(Graphics g, int scrollPos);
     protected abstract boolean update();
     protected abstract void collisionHandler(Sprite sprite);
+    protected abstract void preLoadStaticImages();
+
 
 }
 

@@ -122,6 +122,20 @@ public class Wizard extends Sprite{
         }
     }
 
+    @Override
+    protected void preLoadStaticImages() {
+        if(imageCollectionBackward == null){
+
+            imageCollectionForward = new BufferedImage[8];
+            imageCollectionBackward = new BufferedImage[16];
+            imageCollectionJump = new BufferedImage[17];
+            fileLoad(imageCollectionForward, "resources/wizard/wizard");
+            fileLoad(imageCollectionBackward, "resources/wizard/backward");
+            fileLoad(imageCollectionJump, "resources/wizard/jump");
+            image = imageCollectionForward[0]; //image will start with default moving forward image
+        }
+    }
+
     void imageStateForward(){ //User is pressing right arrow,
         BASE_SPEED = FOWARD_SPEED;
         imageNumberBackward = 0;//resets the counter for the BACKWARDS image array

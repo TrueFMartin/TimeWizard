@@ -63,6 +63,17 @@ public class Fireball extends Sprite{
     @Override
     public void collisionHandler(Sprite sprite) {
     }
+
+    @Override
+    protected void preLoadStaticImages() {
+        if (imageCollection == null) {
+            imageCollection = new BufferedImage[60];
+            fileLoad(imageCollection, "resources/fireball/fireball");
+            image = imageCollection[0];
+
+        }
+    }
+
     @Override
     public String toString()
     {

@@ -42,6 +42,17 @@ public class Pipe extends Sprite{
     public void collisionHandler(Sprite sprite) {}
 
     @Override
+    protected void preLoadStaticImages() {
+        if(image == null){
+            try {
+                image = ImageIO.read(returnImage("resources/background/deadpipe.png"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
      public boolean update(){
          return true;
      }
