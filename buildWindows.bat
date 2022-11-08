@@ -3,6 +3,8 @@
 ::Side Scroller
 ::Game.java View.java Controller.java Model.java Pipe.java Json.java Wizard.java Skeleton.java Fireball.java Sprite.java
 ::@echo off
+::Unable to load games that were saved during run b/c a recompile is needed to access files in jar
+::Use non-jar, regular compile/run batch file to save and then load in same instance
 cd src
 javac main/*.java -d ./bin -Xlint:unchecked
 cd bin
