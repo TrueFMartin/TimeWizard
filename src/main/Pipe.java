@@ -9,11 +9,15 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serial;
 
 public class Pipe extends Sprite{
-     static BufferedImage image;
-     Pipe(int x, int y){
-         super(x, y, 60, 300);
+    @Serial
+    private static final long serialVersionUID = 1234567L;
+
+    static BufferedImage image;
+     Pipe(int x, int y, int w, int h){
+         super(x, y, w, h);
          if(image == null){
              try {
                  image = ImageIO.read(returnImage("resources/background/deadpipe.png"));
@@ -23,17 +27,9 @@ public class Pipe extends Sprite{
          }
      }
      //Unmarshalling construct
-    Pipe(Json ob){
-         this((int)ob.getLong("x"), (int)ob.getLong("y"));
-     }
-
-//     boolean isPipePresent(int x, int y)
-//     {  //Makes sure click cords. are inside of pipe
-//         return(    (this.x <= x && this.x + w >= x) &&
-//                    (this.y <= y && this.y + h >= y));
+//    Pipe(Json ob){
+//         this((int)ob.getLong("x"), (int)ob.getLong("y"));
 //     }
-    //marshals to json
-
 
     @Override
     public void isCollision(Sprite sprite) {
@@ -57,8 +53,8 @@ public class Pipe extends Sprite{
          return true;
      }
     @Override
-    public void draw(Graphics g, int scrollPos){
-         g.drawImage(image, x - scrollPos, y , w, h, null);
+    public void draw(Graphics g, int scrollPos, int vertScrollPos){
+         g.drawImage(image, x - scrollPos, y - vertScrollPos, w, h, null);
     }
     @Override
     public String toString()

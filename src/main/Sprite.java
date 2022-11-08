@@ -28,18 +28,18 @@ public abstract class Sprite implements Serializable {
         this.h = h;
     }
     //--------------Load X Y cords from Json file----------
-    Sprite(Json ob){
-
-        x = (int)ob.getLong("x");
-        y = (int)ob.getLong("y");
-    }
+//    Sprite(Json ob){
+//
+//        x = (int)ob.getLong("x");
+//        y = (int)ob.getLong("y");
+//    }
     //--------------Save X Y cords to Json file----------
-    public Json marshal(){
-        Json ob = Json.newObject();
-        ob.add("x", x);
-        ob.add("y", y);
-        return ob;
-    }
+//    public Json marshal(){
+//        Json ob = Json.newObject();
+//        ob.add("x", x);
+//        ob.add("y", y);
+//        return ob;
+//    }
     //--------------Loop to add image number and prefix, turn into stream, and add to array---------
     void fileLoad(BufferedImage[] imageArray, String filePrefix){
         try {
@@ -64,7 +64,7 @@ public abstract class Sprite implements Serializable {
         return new Rectangle(x, y, w, h); //Creates a rectangle object of sprite with its position and dimensions
     }
     protected abstract void isCollision(Sprite sprite);
-    protected abstract void draw(Graphics g, int scrollPos);
+    protected abstract void draw(Graphics g, int scrollPos, int vertScrollPos);
     protected abstract boolean update();
     protected abstract void collisionHandler(Sprite sprite);
     protected abstract void preLoadStaticImages();

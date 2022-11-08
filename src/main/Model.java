@@ -49,7 +49,7 @@ public class Model {
         wizard.imageStateBackward();
     }
 
-    public void addPipe() //user uses mouse click. Will either add/remove pipe updating model
+    public void addPipe(int pipeW, int pipeH) //user uses mouse click. Will either add/remove pipe updating model
     {
         for (int i = 1; i < sprites.size(); i++) { //run through all sprites
             if (sprites.get(i) instanceof Pipe && isSpritePresent(sprites.get(i))) { //if that sprite is a pipe and it intersects with x,y click
@@ -59,7 +59,7 @@ public class Model {
         }
         //pipe is not present
 
-        sprites.add(new Pipe(clickX, clickY));
+        sprites.add(new Pipe(clickX, clickY, pipeW, pipeH));
     }
 
     //Makes sure click cords. are inside of pipe
@@ -101,7 +101,7 @@ public class Model {
             file.close();
             outObj.close();
         } catch (IOException e) {
-            System.out.println(e);
+            throw new RuntimeException(e);
         }
     }
 @SuppressWarnings("unchecked")
@@ -109,8 +109,8 @@ public class Model {
         System.out.println("Loading...");
 //-----------intialize temp objects to load static images that serializer cant---------
         Skeleton tempSkel = new Skeleton(0,0);
-        Pipe tempPipe = new Pipe(0, 0);
-        Wizard tempWiz = new Wizard(0,0);
+        Pipe tempPipe = new Pipe(0, 0,60,180);
+        Wizard tempWiz = new Wizard(0,600);
         Fireball tempFire = new Fireball(0,0);
         try {
 //            FileInputStream file = new FileInputStream("resources/map/map.ser");

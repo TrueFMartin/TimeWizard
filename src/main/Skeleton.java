@@ -38,11 +38,11 @@ public class Skeleton extends Sprite {
     }
 
     @Override
-    public void draw(Graphics g, int scrollPos) {
+    public void draw(Graphics g, int scrollPos, int vertScrollPos) {
         if(direction != -1)
-            g.drawImage(image, x - scrollPos, y, w, h, null);
+            g.drawImage(image, x - scrollPos, y - vertScrollPos, w, h, null);
         else
-            g.drawImage(image, x - scrollPos + w, y, -w, h, null);
+            g.drawImage(image, x - scrollPos + w, y - vertScrollPos, -w, h, null);
     }
 
     @Override

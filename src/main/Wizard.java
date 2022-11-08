@@ -7,8 +7,12 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.Serial;
 
 public class Wizard extends Sprite{
+    @Serial
+    private static final long serialVersionUID = 1234567L;
+
     static BufferedImage[] imageCollectionForward; //array of images for wizard moving towards right
     static BufferedImage[] imageCollectionBackward;// array of images for wizard moving towards left
     static BufferedImage[] imageCollectionJump;// array of images for wizard jumping
@@ -45,8 +49,8 @@ public class Wizard extends Sprite{
         this((int)ob.getLong("x"), (int)ob.getLong("y"));
     }
     @Override
-    public void draw(Graphics g, int scrollPos) {
-        g.drawImage(image, x - scrollPos, y, w, h, null);
+    public void draw(Graphics g, int scrollPos, int vertScrollPos) {
+        g.drawImage(image, x - scrollPos, y - vertScrollPos, w, h, null);
     }
 
     @Override

@@ -7,8 +7,12 @@ package main;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
+import java.io.Serial;
 
 public class Fireball extends Sprite{
+    @Serial
+    private static final long serialVersionUID = 1234567L;
+
     static BufferedImage[] imageCollection;
     int imageNumber;
     double vertVelocity;
@@ -33,8 +37,8 @@ public class Fireball extends Sprite{
     }
 
     @Override
-    public void draw(Graphics g, int scrollPos) {
-        g.drawImage(image, x - scrollPos, y, w, h, null);
+    public void draw(Graphics g, int scrollPos, int vertScrollPos) {
+        g.drawImage(image, x - scrollPos, y - vertScrollPos, w, h, null);
     }
 
     @Override
